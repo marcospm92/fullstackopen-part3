@@ -24,8 +24,15 @@ const entries = [
     number: '39-23-6423122'
   }
 ]
+
 app.get('/api/persons', (request, response) => {
   response.json(entries)
+})
+
+app.get('/info', (request, response) => {
+  const entriesCount = entries.length
+  const date = new Date()
+  response.send(`<p>Phonebook has info for ${entriesCount} people</p><p>${date}</p>`)
 })
 
 const PORT = 3001

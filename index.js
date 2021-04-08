@@ -58,10 +58,28 @@ app.delete('/api/persons/:id', (request, response) => {
 app.post('/api/persons', (request, response) => {
   const person = request.body
 
+  if (!person.name) {
+    return response.status(400).json({
+      error: 'Name is missing'
+    })
+  }
+
+  if (!person.number) {
+    return response.status(400).json({
+      error: 'Number is missing'
+    })
+  }
+
+  if (persons.some(p => p.name === person.name) === true) {
+    return response.status(400).json({
+      error: 'Name already exists'
+    })
+  }
+
   const getRandomId = (min, max) => {
     min = Math.ceil(min)
     max = Math.floor(max)
-    return Math.floor(Math.random() * (max - min + 1) + min) // The maximum is inclusive and the minimum is inclusive
+    return Math.floor(Math.random() * (max - min + 1) + min)
   }
 
   const newPerson = {

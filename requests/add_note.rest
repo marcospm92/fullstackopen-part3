@@ -5,3 +5,19 @@ Content-Type: application/json
     "name": "Marcos",
     "number": "123456"
 }
+
+### Missing name
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+    "number": "111"
+}
+
+### Missing number
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+    "name": "Prueba"
+}
